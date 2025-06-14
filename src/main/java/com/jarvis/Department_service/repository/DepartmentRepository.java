@@ -15,4 +15,8 @@ public class DepartmentRepository {
         demaprtmentList.add(depa);
         return depa;
     }
+
+    public Department findById(Long id){
+        return demaprtmentList.stream().filter(departmen -> departmen.getId().equals(id)).findFirst().orElseThrow();
+    }
 }
