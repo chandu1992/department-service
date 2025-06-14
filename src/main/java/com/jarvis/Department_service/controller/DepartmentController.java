@@ -5,10 +5,9 @@ import com.jarvis.Department_service.repository.DepartmentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/department")
@@ -25,5 +24,13 @@ public class DepartmentController {
 
     }
 
+    @GetMapping("/getData")
+    public List<Department> findAll(){
+        return departmentRepository.finaAll();
+    }
 
+    @GetMapping("/get/{id}")
+    public Department findById(@PathVariable Long id){
+        return departmentRepository.findById(id);
+    }
 }
