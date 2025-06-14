@@ -19,4 +19,8 @@ public class DepartmentRepository {
     public Department findById(Long id){
         return demaprtmentList.stream().filter(departmen -> departmen.getId().equals(id)).findFirst().orElseThrow();
     }
+
+    public List<Department> finaAll(){
+        return demaprtmentList;
+    }
 }
