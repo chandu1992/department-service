@@ -1,5 +1,6 @@
 package com.jarvis.Department_service.controller;
 
+import com.jarvis.Department_service.client.EmployeeClient;
 import com.jarvis.Department_service.model.Department;
 import com.jarvis.Department_service.repository.DepartmentRepository;
 import org.slf4j.Logger;
@@ -16,6 +17,9 @@ public class DepartmentController {
     private static final Logger LOGGER = LoggerFactory.getLogger(DepartmentController.class);
     @Autowired
     private DepartmentRepository departmentRepository;
+
+    @Autowired
+    private EmployeeClient employeeClient;
 
     @PostMapping
     public Department add(@RequestBody Department data){
