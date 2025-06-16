@@ -2,6 +2,7 @@ package com.jarvis.Department_service.controller;
 
 import com.jarvis.Department_service.client.EmployeeClient;
 import com.jarvis.Department_service.model.Department;
+import com.jarvis.Department_service.model.EmployeeReco;
 import com.jarvis.Department_service.repository.DepartmentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,5 +39,12 @@ public class DepartmentController {
     public Department findById(@PathVariable Long id){
         LOGGER.info("find by id");
         return departmentRepository.findById(id);
+    }
+
+    @GetMapping("/dep/{id}")
+    public List<EmployeeReco> getEmployeeByDepId(@PathVariable Long id){
+        LOGGER.info("find by id");
+        System.out.println("new service");
+        return employeeClient.getEmployeesByDepartmentId(id);
     }
 }

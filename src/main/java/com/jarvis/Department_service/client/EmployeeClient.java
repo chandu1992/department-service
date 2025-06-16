@@ -1,15 +1,25 @@
 package com.jarvis.Department_service.client;
 
 import com.jarvis.Department_service.model.EmployeeReco;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.service.annotation.HttpExchange;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 
-@HttpExchange
-public interface EmployeeClient {
+@Service
+public class EmployeeClient {
 
-    @GetMapping("/employee/department/{id}")
-    public List<EmployeeReco> findByDepartId(@PathVariable Long id);
+    @Autowired
+    private WebClient.Builder webClientBuilder;
+
+    public List<EmployeeReco> getEmployeesByDepartmentId(Long deptId) {
+        return webClientBuilder.build()
+                .get()
+                .uri("http://employee-service/employee/department/" + deptId)
+                .retrieve()
+                .bodyToFlux(EmployeeReco.class)
+                .collectList()
+                .block();
+    }
 }
